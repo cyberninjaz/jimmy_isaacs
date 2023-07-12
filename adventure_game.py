@@ -94,4 +94,21 @@ while True:
             print("You sleep peacefully.")
     elif (action == "explore" or action == "Explore"):
         random.choice(encounters)
-        
+    if random.choice == "zombie":
+        ''
+    if random.choice == "skeleton":
+        ''
+    if random.choice == "witch":
+        ''
+    if random.choice == "bandit":
+        ''
+    if random.choice == "nothing":
+        ''
+    if random.choice == "cave":
+        ''
+    if random.choice == "ruins":
+        ''
+    if random.choice == "canyon":
+        ''
+    if random.choice == "river":
+        ''
