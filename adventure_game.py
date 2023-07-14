@@ -44,23 +44,207 @@ elif stats == "ROGUE":
     damage = 10
     ranged = 25
     steath = 90
+
 def combat(mob, money):
+    global health
+    global attack
+    global arrow
+    global armor
+    global name
+    global ranged
+    global damage
+    global burger
+    global magic
+
+    
     y = random.randint(1,5)
     enemies = []
     if mob == "zombie":
         print(f'you find {y} zombies')
         for num in range(y):
             enemies.append(enemy.zombie(15,40,30,20))
-    elif mob == "skeleton":
+                
+        while True:
+            enemy_number = len(enemies)-1
+            if health == 0:
+                print("You died. :(")
+                return False
+            elif len(enemies) <= 0:
+                return True
+            battle = input("a) melee attack \nb) ranged attack \nc) magic attack \nd) eat \ne)run\n").upper()
+            hit_mod = random.randint(0,100)
+            if battle == "A":
+                hit = (attack + hit_mod) /2
+                if hit >= enemies[enemy_number].armor:
+                    enemies[enemy_number].take_damage(damage)
+                else:
+                    print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "B":
+                hit = (ranged + hit_mod) /2
+                if arrow <= 0:
+                    print("Enemies: Hahahahahahahahahahahahahahahahahaha you're out of arrows.")
+                else:
+                    arrow -= 1
+                    if hit >= enemies[enemy_number].armor:
+                        enemies[enemy_number].take_damage(damage)
+                    else:
+                        print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "C":
+                hit = (magic + hit_mod) /2
+                if hit >= enemies[enemy_number].armor:
+                    enemies[enemy_number].take_damage(damage)
+                else:
+                    print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "D":
+                if burger > 0:
+                    print("You ate a cheeseburger, you healed.")
+                    health += 10
+                    burger -= 1
+                else:
+                    print("Enemies: Hahahahahahahahahahaha you dont have any cheeseburgers")
+            elif battle == "E":
+                run = random.randint(0,1)
+                if run == 0:
+                    print("You successfully run away.")
+                    break
+                else:
+                    print("Enemies: Hahahahahahahahahahahhahahahah you can't get away.")
+
+            for cpu in enemies:
+                if cpu.health <= 0:
+                    enemies.pop()
+                    print(f"You killed an enemy \n{name}: Hahahahahahhahahahahahahah! \nYou got 10 gold")
+                    money += 10
+                else:
+                    if cpu.accuracy(armor) == True:
+                        health -= cpu.damage
+                        print("Enemy: Hahahahahahahahahaha I hit you!")
+                        
+    elif mob == 'skeleton':
         print(f'you find {y} skeletons')
         for num in range(y):
             enemies.append(enemy.zombie(20,50,20,15))
+        while True:
+            enemy_number = len(enemies)-1
+            if health == 0:
+                print("You died. :(")
+                return False
+            elif len(enemies) <= 0:
+                return True
+            battle = input("a) melee attack \nb) ranged attack \nc) magic attack \nd) eat \ne)run\n").upper()
+            hit_mod = random.randint(0,100)
+            if battle == "A":
+                hit = (attack + hit_mod) /2
+                if hit >= enemies[enemy_number].armor:
+                    enemies[enemy_number].take_damage(damage)
+                else:
+                    print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "B":
+                hit = (ranged + hit_mod) /2
+                if arrow <= 0:
+                    print("Enemies: Hahahahahahahahahahahahahahahahahaha you're out of arrows.")
+                else:
+                    arrow -= 1
+                    if hit >= enemies[enemy_number].armor:
+                        enemies[enemy_number].take_damage(damage)
+                    else:
+                        print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "C":
+                hit = (magic + hit_mod) /2
+                if hit >= enemies[enemy_number].armor:
+                    enemies[enemy_number].take_damage(damage)
+                else:
+                    print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "D":
+                if burger > 0:
+                    print("You ate a cheeseburger, you healed.")
+                    health += 10
+                    burger -= 1
+                else:
+                    print("Enemies: Hahahahahahahahahahaha you dont have any cheeseburgers")
+            elif battle == "E":
+                run = random.randint(0,1)
+                if run == 0:
+                    print("You successfully run away.")
+                    break
+                else:
+                    print("Enemies: Hahahahahahahahahahahhahahahah you can't get away.")
+            for cpu in enemies:
+                if cpu.health <= 0:
+                    enemies.pop()
+                    print(f"You killed the enemies \n{name}: Hahahahahahhahahahahahahah! \nYou got 10 gold.")
+                    money += 10
+                else:
+                    if cpu.accuracy(armor) == True:
+                        health -= cpu.damage
+                        print("Enemy: Hahahahahahahahahaha I hit you!")
     elif mob == "witch":
         print(f'you find {y} witches')
         for num in range(y):
             enemies.append(enemy.zombie(30,55,10,30))
+        while True:
+            enemy_number = len(enemies)-1
+
+            if health == 0:
+                print("You died. :(")
+                return False
+            elif len(enemies) <= 0:
+                return True
+            battle = input("a) melee attack \nb) ranged attack \nc) magic attack \nd) eat \ne)run\n").upper()
+            hit_mod = random.randint(0,100)
+            if battle == "A":
+                hit = (attack + hit_mod) /2
+                if hit >= enemies[enemy_number].armor:
+                    enemies[enemy_number].take_damage(damage)
+                    print(enemies[enemy_number].health)
+                else:
+                    print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "B":
+                hit = (ranged + hit_mod) /2
+                if arrow <= 0:
+                    print("Enemies: Hahahahahahahahahahahahahahahahahaha you're out of arrows.")
+                else:
+                    arrow -= 1
+                    if hit >= enemies[enemy_number].armor:
+                        enemies[enemy_number].take_damage(damage)
+                    else:
+                        print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "C":
+                hit = (magic + hit_mod) /2
+                if hit >= enemies[enemy_number].armor:
+                    enemies[enemy_number].take_damage(damage)
+                else:
+                    print("Enemies: Hahahahahahahahahaha you missed.")
+            elif battle == "D":
+                if burger > 0:
+                    print("You ate a cheeseburger, you healed.")
+                    health += 10
+                    burger -= 1
+                else:
+                    print("Enemies: Hahahahahahahahahahaha you dont have any cheeseburgers")
+            elif battle == "E":
+                run = random.randint(0,1)
+                if run == 0:
+                    print("You successfully run away.")
+                    break
+                else:
+                    print("Enemies: Hahahahahahahahahahahhahahahah you can't get away.")
+            for cpu in enemies:
+                if cpu.health <= 0:
+                    enemies.pop()
+                    print(f"You killed the enemies \n{name}: Hahahahahahhahahahahahahah! \nYou got 10 gold.")
+                    money += 10
+                else:
+                    if cpu.accuracy(armor) == True:
+                        health -= cpu.damage
+                        print("Enemy: Hahahahahahahahahaha I hit you!")
     elif mob == "bandit":
-        print("A Bandit appears but nothing happens yet (WIP)")
+        jakob = random.randint(1,5)
+        Jakob = input("A wild Jakob appears and asks you what you want him to do?\n")
+        print("Jakob spits on you and runs away.")
+        if jakob == 1:
+            print("You look away flinching in disgust only to hear an odd sqeualching sound coming from your arm. \nIT'S BEING EATEN BY THE SPIT?!?! A grotesque infection quickly swallows your flesh leaving only bone behind. \nThe infection hastily grows and so does your panic.\n In morbid desperation you begin to saw at you arm in an attempt to save yourself. \nBut you find your efforts futile, nothing could have prepared you for this, and nothing ever will. \nYour death was swift but far from painless.")
+            health = 0
     elif mob == "nothing":
         print ("You find nothing.")
     elif mob == "cave":
@@ -69,6 +253,63 @@ def combat(mob, money):
             print("You found spiders in the cave.")
             for num in range(y):
                 enemies.append(enemy.zombie(10,50,10,10))
+            while True:
+                enemy_number = len(enemies)-1
+
+                if health == 0:
+                    print("You died. :(")
+                    return False
+                elif len(enemies) <= 0:
+                    return True
+                battle = input("a) melee attack \nb) ranged attack \nc) magic attack \nd) eat \ne)run\n").upper()
+                hit_mod = random.randint(0,100)
+                if battle == "A":
+                    hit = (attack + hit_mod) /2
+                    if hit >= enemies[enemy_number].armor:
+                        enemies[enemy_number].take_damage(damage)
+                        print(enemies[enemy_number].health)
+                    else:
+                        print("Enemies: Hahahahahahahahahaha you missed.")
+                elif battle == "B":
+                    hit = (ranged + hit_mod) /2
+                    if arrow <= 0:
+                        print("Enemies: Hahahahahahahahahahahahahahahahahaha you're out of arrows.")
+                    else:
+                        arrow -= 1
+                        if hit >= enemies[enemy_number].armor:
+                            enemies[enemy_number].take_damage(damage)
+                        else:
+                            print("Enemies: Hahahahahahahahahaha you missed.")
+                elif battle == "C":
+                    hit = (magic + hit_mod) /2
+                    if hit >= enemies[enemy_number].armor:
+                        enemies[enemy_number].take_damage(damage)
+                    else:
+                        print("Enemies: Hahahahahahahahahaha you missed.")
+                elif battle == "D":
+                    if burger > 0:
+                        print("You ate a cheeseburger, you healed.")
+                        health += 10
+                        burger -= 1
+                    else:
+                        print("Enemies: Hahahahahahahahahahaha you dont have any cheeseburgers")
+                elif battle == "E":
+                    run = random.randint(0,1)
+                    if run == 0:
+                        print("You successfully run away.")
+                        break
+                    else:
+                        print("Enemies: Hahahahahahahahahahahhahahahah you can't get away.")
+                for cpu in enemies:
+                    if cpu.health <= 0:
+                        enemies.pop()
+                        print(f"You killed an enemy \n{name}: Hahahahahahhahahahahahahah! \nYou got 10 gold.")
+                        money += 10
+                    else:
+                        if cpu.accuracy(armor) == True:
+                            health -= cpu.damage
+                            print("Enemy: Hahahahahahahahahaha I hit you!")
+                
     elif mob == "ruins":
         riddles = ["I have a golden head. I have a golden tail. I have no body. I am a...", "I have two hands on my face but no arms. I am a...", "Many have heard me, yet nobody has seen me. I won't speak back unless spoken to. I am a...", "What five long word become shorter when you add two letters?..."]
         answers = ["GOLDEN COIN", "CLOCK", "ECHO", "SHORT"]
@@ -104,7 +345,7 @@ def combat(mob, money):
                 print("You don't use the bridge.")
         else:
             print("You do not use the bridge.")
-    return 'no'
+    return None
 while True:
     if burger > 0:
         if input(f"Do you want to eat cheeseburger? You have {burger} cheeseburger(s) left. ").upper() == "YES":
@@ -164,8 +405,17 @@ while True:
         check = combat(encounter, money)
         if type(check) == int:
             money = check
+        if type(check) == bool:
+            if check == False:
+                break
+            else:
+                print("You defeated the monsters.")
         success += 1
+        if health <= 0:
+            print("You died :(")
+            break
         if success >= 5:
             print("You win!")
             break
+    
     print("\n------------End of Day------------\n")
