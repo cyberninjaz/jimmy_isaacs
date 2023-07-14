@@ -35,7 +35,7 @@ elif stats == "ARCHER":
     ranged = 95
     stealth = 60
     arrow = 20
-elif stats == "ROGUE":
+else:
     health = 60
     max_health = 60
     magic = 0
@@ -93,6 +93,7 @@ def combat(mob, money):
                 hit = (magic + hit_mod) /2
                 if hit >= enemies[enemy_number].armor:
                     enemies[enemy_number].take_damage(damage)
+                    print("You hit the monster.")
                 else:
                     print("Enemies: Hahahahahahahahahaha you missed.")
             elif battle == "D":
@@ -137,6 +138,7 @@ def combat(mob, money):
                 hit = (attack + hit_mod) /2
                 if hit >= enemies[enemy_number].armor:
                     enemies[enemy_number].take_damage(damage)
+                    print("You hit the enemy.")
                 else:
                     print("Enemies: Hahahahahahahahahaha you missed.")
             elif battle == "B":
@@ -197,6 +199,7 @@ def combat(mob, money):
                 if hit >= enemies[enemy_number].armor:
                     enemies[enemy_number].take_damage(damage)
                     print(enemies[enemy_number].health)
+                    print("You hit the enemy.")
                 else:
                     print("Enemies: Hahahahahahahahahaha you missed.")
             elif battle == "B":
@@ -239,11 +242,11 @@ def combat(mob, money):
                         health -= cpu.damage
                         print("Enemy: Hahahahahahahahahaha I hit you!")
     elif mob == "bandit":
-        jakob = random.randint(1,5)
+        jakob = random.randint(1,1)
         Jakob = input("A wild Jakob appears and asks you what you want him to do?\n")
         print("Jakob spits on you and runs away.")
         if jakob == 1:
-            print("You look away flinching in disgust only to hear an odd sqeualching sound coming from your arm. \nIT'S BEING EATEN BY THE SPIT?!?! A grotesque infection quickly swallows your flesh leaving only bone behind. \nThe infection hastily grows and so does your panic.\n In morbid desperation you begin to saw at you arm in an attempt to save yourself. \nBut you find your efforts futile, nothing could have prepared you for this, and nothing ever will. \nYour death was swift but far from painless.")
+            print("You look away flinching in disgust only to hear an odd sqeualching sound coming from your arm. \nIT'S BEING EATEN BY THE SPIT?!?! A grotesque infection quickly swallows your flesh leaving only bone behind. \nThe infection hastily grows and so does your panic.\nIn morbid desperation you begin to saw at you arm in an attempt to save yourself. \nBut you find your efforts futile, nothing could have prepared you for this, and nothing ever will. \nYour death was swift but far from painless.")
             health = 0
     elif mob == "nothing":
         print ("You find nothing.")
@@ -268,6 +271,7 @@ def combat(mob, money):
                     if hit >= enemies[enemy_number].armor:
                         enemies[enemy_number].take_damage(damage)
                         print(enemies[enemy_number].health)
+                        print("You hit the enemy.")
                     else:
                         print("Enemies: Hahahahahahahahahaha you missed.")
                 elif battle == "B":
@@ -350,6 +354,7 @@ while True:
     if burger > 0:
         if input(f"Do you want to eat cheeseburger? You have {burger} cheeseburger(s) left. ").upper() == "YES":
             health += 10
+            burger -= 1
     if random.randint(0,100) <= 20:
         trader = input("Jake showed up, do you buy from him? ")
         if (trader == "Yes" or trader == "yes"):
@@ -388,7 +393,7 @@ while True:
                 if ask == 'NO':
                     break
 
-    action = input("What do you want to do this turn? You can rest or explore: ").upper()
+    action = input(f"What do you want to do this turn? You can rest or explore, you have {health} health left\n").upper()
     if action == "REST":
         if health + 20 <= max_health:
             health += 20
